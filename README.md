@@ -1,0 +1,2 @@
+# practical
+All practicals Code
