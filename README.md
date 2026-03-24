@@ -5,7 +5,7 @@
 
 *Experiments For OS Practical*
 
-1) Write the program to implement CPU & scheduling algorithm for first come first serve scheduling.
+1) Write the program to implement CPU & scheduling algorithm for first come first serve scheduling (1.c).
 
 2) To write a program to implement cpu scheduling algorithm for shortest job first scheduling.
 
