@@ -1,0 +1,852 @@
+EXPERIMENT 1: First Come First Serve (FCFS) Scheduling
+c
+#include<stdio.h>
+#include<conio.h>
+
+struct process
+{
+    int pid;
+    int bt;
+    int wt;
+    int tt;
+} p[10];
+
+int main()
+{
+    int i, n, totwt, tottt, avg1, avg2;
+    clrscr();
+
+    printf("Enter the no of process \n");
+    scanf("%d", &n);
+
+    for(i=1; i<=n; i++)
+    {
+        p[i].pid = i;
+        printf("Enter the burst time: ");
+        scanf("%d", &p[i].bt);
+    }
+
+    p[1].wt = 0;
+    p[1].tt = p[1].bt + p[1].wt;
+
+    i = 2;
+    while(i <= n)
+    {
+        p[i].wt = p[i-1].bt + p[i-1].wt;
+        p[i].tt = p[i].bt + p[i].wt;
+        i++;
+    }
+
+    i = 1;
+    totwt = tottt = 0;
+
+    printf("\nProcess ID\tBT\tWT\tTT\n");
+
+    while(i <= n)
+    {
+        printf("\n\t%d \t%d \t%d \t%d", p[i].pid, p[i].bt, p[i].wt, p[i].tt);
+        totwt = p[i].wt + totwt;
+        tottt = p[i].tt + tottt;
+        i++;
+    }
+
+    avg1 = totwt / n;
+    avg2 = tottt / n;
+
+    printf("\nAverage Waiting Time = %d", avg1);
+    printf("\nAverage Turnaround Time = %d", avg2);
+
+    getch();
+    return 0;
+}
+EXPERIMENT 2: Shortest Job First (SJF) Scheduling
+c
+#include<stdio.h>
+#include<conio.h>
+
+struct process
+{
+    int pid;
+    int bt;
+    int wt;
+    int tt;
+} p[10], temp;
+
+int main()
+{
+    int i, j, n, totwt, tottt;
+    float avg1, avg2;
+    clrscr();
+
+    printf("\nEnter the number of process:\t");
+    scanf("%d", &n);
+
+    for(i=1; i<=n; i++)
+    {
+        p[i].pid = i;
+        printf("\nEnter the burst time:\t");
+        scanf("%d", &p[i].bt);
+    }
+
+    // Sorting processes by burst time (SJF)
+    for(i=1; i<n; i++)
+    {
+        for(j=i+1; j<=n; j++)
+        {
+            if(p[i].bt > p[j].bt)
+            {
+                temp.pid = p[i].pid;
+                p[i].pid = p[j].pid;
+                p[j].pid = temp.pid;
+
+                temp.bt = p[i].bt;
+                p[i].bt = p[j].bt;
+                p[j].bt = temp.bt;
+            }
+        }
+    }
+
+    p[1].wt = 0;
+    p[1].tt = p[1].bt + p[1].wt;
+
+    i = 2;
+    while(i <= n)
+    {
+        p[i].wt = p[i-1].bt + p[i-1].wt;
+        p[i].tt = p[i].bt + p[i].wt;
+        i++;
+    }
+
+    i = 1;
+    totwt = tottt = 0;
+
+    printf("\nProcess ID\tBT\tWT\tTT\n");
+
+    while(i <= n)
+    {
+        printf("\n\t%d \t%d \t%d \t%d", p[i].pid, p[i].bt, p[i].wt, p[i].tt);
+        totwt = p[i].wt + totwt;
+        tottt = p[i].tt + tottt;
+        i++;
+    }
+
+    avg1 = (float)totwt / n;
+    avg2 = (float)tottt / n;
+
+    printf("\nAverage Waiting Time = %f", avg1);
+    printf("\nAverage Turnaround Time = %f", avg2);
+
+    getch();
+    return 0;
+}
+EXPERIMENT 3: Priority Scheduling
+c
+#include<stdio.h>
+#include<conio.h>
+
+struct process
+{
+    int pid;
+    int bt;
+    int wt;
+    int tt;
+    int prior;
+} p[10], temp;
+
+int main()
+{
+    int i, j, n, totwt, tottt, arg1, arg2;
+    clrscr();
+
+    printf("Enter the number of process: ");
+    scanf("%d", &n);
+
+    for(i=1; i<=n; i++)
+    {
+        p[i].pid = i;
+        printf("Enter the burst time: ");
+        scanf("%d", &p[i].bt);
+        printf("Enter the priority: ");
+        scanf("%d", &p[i].prior);
+    }
+
+    // Sorting by priority (lower number = higher priority)
+    for(i=1; i<n; i++)
+    {
+        for(j=i+1; j<=n; j++)
+        {
+            if(p[i].prior > p[j].prior)
+            {
+                temp.pid = p[i].pid;
+                p[i].pid = p[j].pid;
+                p[j].pid = temp.pid;
+
+                temp.bt = p[i].bt;
+                p[i].bt = p[j].bt;
+                p[j].bt = temp.bt;
+
+                temp.prior = p[i].prior;
+                p[i].prior = p[j].prior;
+                p[j].prior = temp.prior;
+            }
+        }
+    }
+
+    p[1].wt = 0;
+    p[1].tt = p[1].bt + p[1].wt;
+
+    i = 2;
+    while(i <= n)
+    {
+        p[i].wt = p[i-1].bt + p[i-1].wt;
+        p[i].tt = p[i].bt + p[i].wt;
+        i++;
+    }
+
+    i = 1;
+    totwt = tottt = 0;
+
+    printf("\nProcess ID\tBT\tWT\tTT\tPriority\n");
+
+    while(i <= n)
+    {
+        printf("\n\t%d \t%d \t%d \t%d \t%d", p[i].pid, p[i].bt, p[i].wt, p[i].tt, p[i].prior);
+        totwt = p[i].wt + totwt;
+        tottt = p[i].tt + tottt;
+        i++;
+    }
+
+    arg1 = totwt / n;
+    arg2 = tottt / n;
+
+    printf("\nAverage Waiting Time = %d", arg1);
+    printf("\nAverage Turnaround Time = %d", arg2);
+
+    getch();
+    return 0;
+}
+EXPERIMENT 4: Round Robin Scheduling
+c
+#include<stdio.h>
+#include<conio.h>
+
+struct process
+{
+    int pid;
+    int bt;
+    int tt;
+    int wt;
+};
+
+int main()
+{
+    struct process x[10], p[30];
+    int i, j, k, tot = 0, m, n;
+    float wttime = 0.0, tottime = 0.0, a1, a2;
+    clrscr();
+
+    printf("\nEnter the number of process:\t");
+    scanf("%d", &n);
+
+    for(i=1; i<=n; i++)
+    {
+        x[i].pid = i;
+        printf("\nEnter the Burst Time:\t");
+        scanf("%d", &x[i].bt);
+        tot = tot + x[i].bt;
+    }
+
+    printf("\nTotal Burst Time:\t%d", tot);
+
+    p[0].tt = 0;
+    k = 1;
+
+    printf("\nEnter the Time Slice:\t");
+    scanf("%d", &m);
+
+    for(j=1; j<=tot; j++)
+    {
+        for(i=1; i<=n; i++)
+        {
+            if(x[i].bt != 0)
+            {
+                p[k].pid = i;
+
+                if(x[i].bt - m < 0)
+                {
+                    p[k].wt = p[k-1].tt;
+                    p[k].bt = x[i].bt;
+                    p[k].tt = p[k].wt + x[i].bt;
+                    x[i].bt = 0;
+                    k++;
+                }
+                else
+                {
+                    p[k].wt = p[k-1].tt;
+                    p[k].tt = p[k].wt + m;
+                    x[i].bt = x[i].bt - m;
+                    k++;
+                }
+            }
+        }
+    }
+
+    printf("\nProcess ID\tWT\tTT\n");
+
+    for(i=1; i<k; i++)
+    {
+        printf("\n\t%d \t%d \t%d", p[i].pid, p[i].wt, p[i].tt);
+        wttime = wttime + p[i].wt;
+        tottime = tottime + p[i].tt;
+    }
+
+    a1 = wttime / n;
+    a2 = tottime / n;
+
+    printf("\n\nAverage Waiting Time:\t%f", a1);
+    printf("\n\nAverage Turnaround Time:\t%f", a2);
+
+    getch();
+    return 0;
+}
+EXPERIMENT 5: Producer-Consumer Problem
+c
+#include<stdio.h>
+#include<conio.h>
+
+void main()
+{
+    int buffer[10], bufsize, in, out, produce, consume, choice = 0;
+    clrscr();
+
+    in = 0;
+    out = 0;
+    bufsize = 10;
+
+    while(choice != 3)
+    {
+        printf("\n1. Produce \t 2. Consume \t 3. Exit");
+        printf("\nEnter your choice: ");
+        scanf("%d", &choice);
+
+        switch(choice)
+        {
+            case 1:
+                if((in + 1) % bufsize == out)
+                    printf("\nBuffer is Full\n");
+                else
+                {
+                    printf("\nEnter the value: ");
+                    scanf("%d", &produce);
+                    buffer[in] = produce;
+                    in = (in + 1) % bufsize;
+                    printf("\nProduced: %d\n", produce);
+                }
+                break;
+
+            case 2:
+                if(in == out)
+                    printf("\nBuffer is Empty\n");
+                else
+                {
+                    consume = buffer[out];
+                    printf("\nThe consumed value is %d\n", consume);
+                    out = (out + 1) % bufsize;
+                }
+                break;
+
+            case 3:
+                printf("\nExiting...\n");
+                break;
+
+            default:
+                printf("\nInvalid choice!\n");
+        }
+    }
+
+    getch();
+}
+EXPERIMENT 6: FIFO Page Replacement Algorithm
+c
+#include<stdio.h>
+#include<conio.h>
+
+int main()
+{
+    int referenceString[10], pageFaults = 0, m, n, s, pages, frames;
+    int temp[10];
+    clrscr();
+
+    printf("\nEnter the number of Pages:\t");
+    scanf("%d", &pages);
+
+    printf("\nEnter reference string values:\n");
+    for(m = 0; m < pages; m++)
+    {
+        printf("Value No. [%d]:\t", m + 1);
+        scanf("%d", &referenceString[m]);
+    }
+
+    printf("\nWhat are the total number of frames:\t");
+    scanf("%d", &frames);
+
+    for(m = 0; m < frames; m++)
+    {
+        temp[m] = -1;
+    }
+
+    printf("\nPage Replacement Process:\n");
+
+    for(m = 0; m < pages; m++)
+    {
+        s = 0;
+
+        for(n = 0; n < frames; n++)
+        {
+            if(referenceString[m] == temp[n])
+            {
+                s++;
+                pageFaults--;
+            }
+        }
+
+        pageFaults++;
+
+        if((pageFaults <= frames) && (s == 0))
+        {
+            temp[m] = referenceString[m];
+        }
+        else if(s == 0)
+        {
+            temp[(pageFaults - 1) % frames] = referenceString[m];
+        }
+
+        printf("\n");
+        for(n = 0; n < frames; n++)
+        {
+            if(temp[n] != -1)
+                printf("%d\t", temp[n]);
+            else
+                printf("-\t");
+        }
+    }
+
+    printf("\n\nTotal Page Faults:\t%d\n", pageFaults);
+
+    getch();
+    return 0;
+}
+EXPERIMENT 7: LRU Page Replacement Algorithm
+c
+#include<stdio.h>
+#include<conio.h>
+
+int main()
+{
+    int frames[10], temp[10], pages[10];
+    int total_pages, m, n, position, k, l, total_frames;
+    int a = 0, b = 0, page_fault = 0;
+    clrscr();
+
+    printf("\nEnter Total Number of Frames:\t");
+    scanf("%d", &total_frames);
+
+    for(m = 0; m < total_frames; m++)
+    {
+        frames[m] = -1;
+    }
+
+    printf("Enter Total Number of Pages:\t");
+    scanf("%d", &total_pages);
+
+    printf("Enter Values for Reference String:\n");
+    for(m = 0; m < total_pages; m++)
+    {
+        printf("Value No.[%d]:\t", m + 1);
+        scanf("%d", &pages[m]);
+    }
+
+    printf("\nLRU Page Replacement:\n");
+
+    for(n = 0; n < total_pages; n++)
+    {
+        a = 0;
+        b = 0;
+
+        // Check if page is already in frame
+        for(m = 0; m < total_frames; m++)
+        {
+            if(frames[m] == pages[n])
+            {
+                a = 1;
+                b = 1;
+                break;
+            }
+        }
+
+        // If page not in frame, check for empty frame
+        if(a == 0)
+        {
+            for(m = 0; m < total_frames; m++)
+            {
+                if(frames[m] == -1)
+                {
+                    frames[m] = pages[n];
+                    b = 1;
+                    break;
+                }
+            }
+            page_fault++;
+        }
+
+        // If no empty frame, use LRU replacement
+        if(b == 0)
+        {
+            for(m = 0; m < total_frames; m++)
+            {
+                temp[m] = 0;
+            }
+
+            for(k = n - 1, l = 1; l <= total_frames - 1 && k >= 0; l++, k--)
+            {
+                for(m = 0; m < total_frames; m++)
+                {
+                    if(frames[m] == pages[k])
+                    {
+                        temp[m] = 1;
+                    }
+                }
+            }
+
+            position = 0;
+            for(m = 0; m < total_frames; m++)
+            {
+                if(temp[m] == 0)
+                {
+                    position = m;
+                    break;
+                }
+            }
+
+            frames[position] = pages[n];
+        }
+
+        printf("\n");
+        for(m = 0; m < total_frames; m++)
+        {
+            if(frames[m] != -1)
+                printf("%d\t", frames[m]);
+            else
+                printf("-\t");
+        }
+    }
+
+    printf("\n\nTotal Number of Page Faults:\t%d\n", page_fault);
+
+    getch();
+    return 0;
+}
+EXPERIMENT 8: Optimal Page Replacement Algorithm
+c
+#include<stdio.h>
+#include<conio.h>
+
+int main()
+{
+    int reference_string[25], frames[25], interval[25];
+    int pages, total_frames, page_faults = 0;
+    int m, n, temp, flag, found;
+    int position, maximum_interval, previous_frame = -1;
+    clrscr();
+
+    printf("\nEnter Total Number of Pages:\t");
+    scanf("%d", &pages);
+
+    printf("\nEnter Values of Reference String\n");
+    for(m = 0; m < pages; m++)
+    {
+        printf("Value No.[%d]:\t", m + 1);
+        scanf("%d", &reference_string[m]);
+    }
+
+    printf("\nEnter Total Number of Frames:\t");
+    scanf("%d", &total_frames);
+
+    for(m = 0; m < total_frames; m++)
+    {
+        frames[m] = -1;
+    }
+
+    printf("\nOptimal Page Replacement:\n");
+
+    for(m = 0; m < pages; m++)
+    {
+        flag = 0;
+
+        for(n = 0; n < total_frames; n++)
+        {
+            if(frames[n] == reference_string[m])
+            {
+                flag = 1;
+                printf("\t");
+                break;
+            }
+        }
+
+        if(flag == 0)
+        {
+            if(previous_frame == total_frames - 1)
+            {
+                for(n = 0; n < total_frames; n++)
+                {
+                    interval[n] = 0;
+                    for(temp = m + 1; temp < pages; temp++)
+                    {
+                        if(frames[n] == reference_string[temp])
+                        {
+                            interval[n] = temp - m;
+                            break;
+                        }
+                    }
+                }
+
+                found = 0;
+                for(n = 0; n < total_frames; n++)
+                {
+                    if(interval[n] == 0)
+                    {
+                        position = n;
+                        found = 1;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                position = ++previous_frame;
+                found = 1;
+            }
+
+            if(found == 0)
+            {
+                maximum_interval = interval[0];
+                position = 0;
+                for(n = 1; n < total_frames; n++)
+                {
+                    if(maximum_interval < interval[n])
+                    {
+                        maximum_interval = interval[n];
+                        position = n;
+                    }
+                }
+            }
+
+            frames[position] = reference_string[m];
+            printf("FAULT\t");
+            page_faults++;
+        }
+
+        for(n = 0; n < total_frames; n++)
+        {
+            if(frames[n] != -1)
+            {
+                printf("%d\t", frames[n]);
+            }
+            else
+            {
+                printf("-\t");
+            }
+        }
+        printf("\n");
+    }
+
+    printf("\nTotal Number of Page Faults:\t%d\n", page_faults);
+
+    getch();
+    return 0;
+}
+EXPERIMENT 9: First Fit Memory Allocation
+c
+#include<stdio.h>
+#include<conio.h>
+
+void main()
+{
+    int bsize[10], psize[10], bno, pno, flags[10], allocation[10], i, j;
+    clrscr();
+
+    for(i = 0; i < 10; i++)
+    {
+        flags[i] = 0;
+        allocation[i] = -1;
+    }
+
+    printf("Enter no. of blocks: ");
+    scanf("%d", &bno);
+
+    printf("\nEnter size of each block: \n");
+    for(i = 0; i < bno; i++)
+    {
+        printf("Block %d: ", i+1);
+        scanf("%d", &bsize[i]);
+    }
+
+    printf("\nEnter no. of processes: ");
+    scanf("%d", &pno);
+
+    printf("\nEnter size of each process: \n");
+    for(i = 0; i < pno; i++)
+    {
+        printf("Process %d: ", i+1);
+        scanf("%d", &psize[i]);
+    }
+
+    // Allocation as per first fit
+    for(i = 0; i < pno; i++)
+    {
+        for(j = 0; j < bno; j++)
+        {
+            if(flags[j] == 0 && bsize[j] >= psize[i])
+            {
+                allocation[j] = i;
+                flags[j] = 1;
+                break;
+            }
+        }
+    }
+
+    // Display allocation details
+    printf("\nBlock No.\tSize\t\tProcess No.\t\tSize\n");
+    for(i = 0; i < bno; i++)
+    {
+        printf("\n%d\t\t%d\t\t", i+1, bsize[i]);
+        if(flags[i] == 1)
+            printf("%d\t\t\t%d", allocation[i]+1, psize[allocation[i]]);
+        else
+            printf("Not allocated");
+    }
+
+    getch();
+}
+EXPERIMENT 10: Best Fit Memory Allocation
+c
+#include<stdio.h>
+#include<conio.h>
+
+void main()
+{
+    int fragment[20], b[20], p[20], i, j, nb, np, tem, low = 9999;
+    static int barray[20], parray[20];
+    clrscr();
+
+    printf("Memory Management Scheme - Best Fit\n");
+
+    printf("Enter the number of processes: ");
+    scanf("%d", &np);
+
+    printf("\nEnter the number of blocks: ");
+    scanf("%d", &nb);
+
+    printf("\nEnter the size of the blocks:-\n");
+    for(i = 1; i <= nb; i++)
+    {
+        printf("Block no.%d:", i);
+        scanf("%d", &b[i]);
+    }
+
+    printf("\nEnter the size of the processes:-\n");
+    for(i = 1; i <= np; i++)
+    {
+        printf("Process no.%d:", i);
+        scanf("%d", &p[i]);
+    }
+
+    for(i = 1; i <= np; i++)
+    {
+        for(j = 1; j <= nb; j++)
+        {
+            if(barray[j] != 1)
+            {
+                tem = b[j] - p[i];
+                if(tem >= 0)
+                {
+                    if(low > tem)
+                    {
+                        parray[i] = j;
+                        low = tem;
+                    }
+                }
+            }
+        }
+        fragment[i] = low;
+        barray[parray[i]] = 1;
+        low = 10000;
+    }
+
+    // Print the result
+    printf("\nProcess No.\tProcess Size\tBlock No.\tBlock Size\tFragment");
+    for(i = 1; i <= np && parray[i] != 0; i++)
+    {
+        printf("\n%d\t\t%d\t\t%d\t\t%d\t\t%d",
+               i, p[i], parray[i], b[parray[i]], fragment[i]);
+    }
+
+    getch();
+}
+Additional: SSTF Disk Scheduling Algorithm (as requested in experiment 10 list)
+c
+#include<stdio.h>
+#include<conio.h>
+#include<math.h>
+
+void main()
+{
+    int tracks[25], n, i, j, current, position, temp;
+    int total_seek_time = 0, completed[25] = {0};
+    clrscr();
+
+    printf("Enter the number of tracks: ");
+    scanf("%d", &n);
+
+    printf("Enter the track positions:\n");
+    for(i = 0; i < n; i++)
+    {
+        printf("Track %d: ", i+1);
+        scanf("%d", &tracks[i]);
+    }
+
+    printf("Enter the current head position: ");
+    scanf("%d", &current);
+
+    printf("\nSSTF Disk Scheduling:\n");
+    printf("Seek Sequence: %d", current);
+
+    for(i = 0; i < n; i++)
+    {
+        int min_distance = 9999;
+        position = -1;
+
+        for(j = 0; j < n; j++)
+        {
+            if(completed[j] == 0)
+            {
+                int distance = abs(current - tracks[j]);
+                if(distance < min_distance)
+                {
+                    min_distance = distance;
+                    position = j;
+                }
+            }
+        }
+
+        total_seek_time += min_distance;
+        current = tracks[position];
+        completed[position] = 1;
+        printf(" -> %d", current);
+    }
+
+    printf("\n\nTotal Seek Time: %d", total_seek_time);
+    printf("\nAverage Seek Time: %.2f", (float)total_seek_time / n);
+
+    getch();
+}
