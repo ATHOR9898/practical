@@ -1,30 +1,28 @@
-# OS
+# CGVR
 ---
 
 ## List of Experiments
 
-*Experiments For OS Practical*
+*Experiments For CGVR Practical*
 
-1) Write the program to implement CPU & scheduling algorithm for first come first serve scheduling ([1.c](https://github.com/ATHOR9898/practical/blob/main/1.c)).
+1. To implement DDA Line Drawing Algorithm. ([1.c](https://github.com/ATHOR9898/practical/blob/main/1.c))
 
-2) To write a program to implement cpu scheduling algorithm for shortest job first scheduling. ([2.c](https://github.com/ATHOR9898/practical/blob/main/2.c)).  
+2. To implement Bresenham’s Line Drawing Algorithm. ([2.c](https://github.com/ATHOR9898/practical/blob/main/2.c))
 
-3) To write a ‘C’ program to perform priority scheduling. ([3.c](https://github.com/ATHOR9898/practical/blob/main/3.c))
+3. To implement Midpoint Circle Drawing Algorithm. ([3.c](https://github.com/ATHOR9898/practical/blob/main/3.c))
 
-4) To write a program to implement cpu scheduling for Round Robin Scheduling. ([4.c](https://github.com/ATHOR9898/practical/blob/main/4.c))
+4. To implement Area Filling Algorithm: Boundary Fill, Flood Fill. ([4.c](https://github.com/ATHOR9898/practical/blob/main/4.c))
 
-5) To Write a C program to simulate producer-consumer problem using semaphores. ([5.c](https://github.com/ATHOR9898/practical/blob/main/5.c))
+5. To implement Scan Line Polygon Filling Algorithm. ([5.c](https://github.com/ATHOR9898/practical/blob/main/5.c))
 
-6) Study and simulate the concept of Dining-philosophers problem. ([6.c](https://github.com/ATHOR9898/practical/blob/main/6.c))
+6. To implement 2D Transformations: Translation, Scaling, Rotation. ([6.c](https://github.com/ATHOR9898/practical/blob/main/6.c))
 
-7) To study and implement page replacement algorithms for memory  ([7.c](https://github.com/ATHOR9898/practical/blob/main/7.c))
-management : FIFO.  
+7. To implement Line Clipping Algorithm: Cohen Sutherland. ([7.c](https://github.com/ATHOR9898/practical/blob/main/7.c))
 
-8) To study and implement page replacement algorithms for memory  ([8.c](https://github.com/ATHOR9898/practical/blob/main/8.c))
-management :  Least recently used (LRU).
+8. To implement Polygon Clipping Algorithm: Sutherland Hodgeman. ([8.c](https://github.com/ATHOR9898/practical/blob/main/8.c))
 
-9) To study and implement page replacement algorithms for memory  ([9.c](https://github.com/ATHOR9898/practical/blob/main/9.c))
-management : Optimal.
+9. To implement 3D modeling for VR. ([9.c](https://github.com/ATHOR9898/practical/blob/main/9.c))
 
-10) To study and implement disk scheduling algorithms : Shortest Seek Time First (SSTF)  ([10.c](https://github.com/ATHOR9898/practical/blob/main/10.c))
+10. To create Interactive Application (games). ([10.c](https://github.com/ATHOR9898/practical/blob/main/10.c))
+
 ---
