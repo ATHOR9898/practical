@@ -1,52 +1,46 @@
-// 10) To study and implement disk scheduling algorithms : Shortest Seek Time First (SSTF)
-
-#include<stdio.h>
-#include<conio.h>
-#include<stdlib.h>
-
-void main()
-{
-int n,i,j,head,total=0,closest,idx,dist,min;
-int req[50],visited[50];
-
-clrscr();
-
-printf("Enter number of requests: ");
-scanf("%d",&n);
-
-printf("Enter request sequence:\n");
-for(i=0;i<n;i++)
-{
-scanf("%d",&req[i]);
-visited[i]=0;
+#include <graphics.h>
+#include <conio.h>
+#include <dos.h>
+#include <stdlib.h>
+int main(){
+int gd=DETECT,gm;
+int px=300,py=400;
+int ex=300,ey=0;
+char ch;
+initgraph(&gd,&gm,"C:\\TURBOC3\\BGI");
+randomize();
+while(1){
+cleardevice();
+setcolor(WHITE);
+rectangle(200,0,440,480);
+setcolor(BLUE);
+rectangle(px,py,px+40,py+60);
+outtextxy(px+5,py+20,"YOU");
+setcolor(RED);
+rectangle(ex,ey,ex+40,ey+60);
+outtextxy(ex+5,ey+20,"CPU");
+ey+=10;
+if(ey>480){
+ey=0;
+ex=220+rand()%180;
 }
-
-printf("Enter initial head position: ");
-scanf("%d",&head);
-
-for(i=0;i<n;i++)
-{
-min=10000;
-for(j=0;j<n;j++)
-{
-if(!visited[j])
-{
-dist=abs(head-req[j]);
-if(dist<min)
-{
-min=dist;
-closest=req[j];
-idx=j;
-}
-}
-}
-total+=min;
-head=closest;
-visited[idx]=1;
-printf("%d -> ",head);
-}
-
-printf("\nTotal seek time = %d",total);
-
+if(px<ex+40&&px+40>ex&&py<ey+60&&py+60>ey){
+cleardevice();
+outtextxy(250,240,"GAME OVER!");
 getch();
+break;
+}
+if(kbhit()){
+ch=getch();
+if(ch==27)break;
+if(ch==0){
+ch=getch();
+if(ch==75&&px>210)px-=20;
+if(ch==77&&px<380)px+=20;
+}
+}
+delay(100);
+}
+closegraph();
+return 0;
 }

@@ -1,98 +1,31 @@
-// 3)To write a ‘C’ program to perform priority scheduling.
-
-#include<stdio.h>
-#include<conio.h>
-
-struct process
-{
-int pid;
-int bt;
-int wt;
-int tt;
-int prior;
-} p[10], temp;
-
-void main()
-{
-int i,j,n,totwt,tottt,arg1,arg2;
-
-clrscr();
-
-printf("enter the number of process");
-scanf("%d",&n);
-
-for(i=1;i<=n;i++)
-{
-p[i].pid=i;
-
-printf("enter the burst time");
-scanf("%d",&p[i].bt);
-
-printf("\n enter the priority");
-scanf("%d",&p[i].prior);
-}
-
-for(i=1;i<n;i++)
-{
-for(j=i+1;j<=n;j++)
-{
-if(p[i].prior>p[j].prior)
-{
-temp.pid=p[i].pid;
-p[i].pid=p[j].pid;
-p[j].pid=temp.pid;
-
-temp.bt=p[i].bt;
-p[i].bt=p[j].bt;
-p[j].bt=temp.bt;
-
-temp.prior=p[i].prior;
-p[i].prior=p[j].prior;
-p[j].prior=temp.prior;
+#include <graphics.h>
+#include <conio.h>
+void main(){
+int gd=DETECT,gm;
+int xc=250,yc=200;
+int r=100;
+int x=0;
+int y=r;
+int p;
+initgraph(&gd,&gm,"C:\\TURBOC3\\BGI");
+p=1-r;
+while(x<=y){
+putpixel(xc+x,yc+y,WHITE);
+putpixel(xc-x,yc+y,WHITE);
+putpixel(xc+x,yc-y,WHITE);
+putpixel(xc-x,yc-y,WHITE);
+putpixel(xc+y,yc+x,WHITE);
+putpixel(xc-y,yc+x,WHITE);
+putpixel(xc+y,yc-x,WHITE);
+putpixel(xc-y,yc-x,WHITE);
+x++;
+if(p<0){
+p=p+2*x+1;
+}else{
+y--;
+p=p+2*(x-y)+1;
 }
 }
-}
-
-p[1].wt=0;
-p[1].tt=p[1].bt+p[1].wt;
-
-i=2;
-
-while(i<=n)
-{
-p[i].wt=p[i-1].bt+p[i-1].wt;
-p[i].tt=p[i].bt+p[i].wt;
-i++;
-}
-
-i=1;
-totwt=0;
-tottt=0;
-
-printf("\n process id \t bt \t wt \t tt");
-
-while(i<=n)
-{
-printf("\n%d\t %d\t %d\t %d\t",p[i].pid,p[i].bt,p[i].wt,p[i].tt);
-
-totwt=p[i].wt+totwt;
-tottt=p[i].tt+tottt;
-
-i++;
-}
-
-arg1=totwt/n;
-arg2=tottt/n;
-
-printf("\n arg1=%d \t arg2=%d\t",arg1,arg2);
-
 getch();
+closegraph();
 }
-
-// 3
-// 2
-
-// 2,4
-// 1,5
-
-// 3 

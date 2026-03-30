@@ -1,116 +1,35 @@
-// 9)To study and implement page replacement algorithms for memory
-// management : Optimal.
-
-#include<stdio.h>
-#include<conio.h>
-
-int main()
-{
-int reference_string[25], frames[25], interval[25];
-int pages, total_frames, page_faults = 0;
-int m, n, temp, flag, found;
-int position, maximum_interval, previous_frame = -1;
-
-clrscr();
-
-printf("\nEnter Total Number of Pages:\t");
-scanf("%d", &pages);
-
-printf("\nEnter Values of Reference String\n");
-for(m = 0; m < pages; m++)
-{
-printf("Value No.[%d]:\t", m + 1);
-scanf("%d", &reference_string[m]);
+#include <graphics.h>
+#include <stdio.h>
+#include <conio.h>
+int d=200;
+void project(int x,int y,int z,int *xp,int *yp){
+*xp=x+(z*x)/d;
+*yp=y+(z*y)/d;
 }
-
-printf("\nEnter Total Number of Frames:\t");
-scanf("%d", &total_frames);
-
-for(m = 0; m < total_frames; m++)
-{
-frames[m] = -1;
-}
-
-for(m = 0; m < pages; m++)
-{
-flag = 0;
-
-for(n = 0; n < total_frames; n++)
-{
-if(frames[n] == reference_string[m])
-{
-flag = 1;
-printf("\t");
-break;
-}
-}
-
-if(flag == 0)
-{
-if(previous_frame == total_frames - 1)
-{
-for(n = 0; n < total_frames; n++)
-{
-interval[n] = 0;
-for(temp = m + 1; temp < pages; temp++)
-{
-if(frames[n] == reference_string[temp])
-{
-interval[n] = temp - m;
-break;
-}
-}
-}
-found = 0;
-
-for(n = 0; n < total_frames; n++)
-{
-if(interval[n] == 0)
-{
-position = n;
-found = 1;
-break;
-}
-}
-}
-else
-{
-position = ++previous_frame;
-found = 1;
-}
-
-if(found == 0)
-{
-maximum_interval = interval[0];
-position = 0;
-
-for(n = 1; n < total_frames; n++)
-{
-if(maximum_interval < interval[n])
-{
-maximum_interval = interval[n];
-position = n;
-}
-}
-}
-
-frames[position] = reference_string[m];
-printf("FAULT\t");
-page_faults++;
-}
-
-for(n = 0; n < total_frames; n++)
-{
-if(frames[n] != -1)
-{
-printf("%d\t", frames[n]);
-}
-}
-printf("\n");
-}
-
-printf("\nTotal Number of Page Faults:\t%d\n", page_faults);
-
+int main(){
+int gd=DETECT,gm;
+int x[8]={100,150,150,100,120,170,170,120};
+int y[8]={100,100,150,150,120,120,170,170};
+int z[8]={0,0,0,0,50,50,50,50};
+int xp[8],yp[8];
+int i;
+initgraph(&gd,&gm,"C:\\TURBOC3\\BGI");
+for(i=0;i<8;i++)
+project(x[i],y[i],z[i],&xp[i],&yp[i]);
+line(xp[0],yp[0],xp[1],yp[1]);
+line(xp[1],yp[1],xp[2],yp[2]);
+line(xp[2],yp[2],xp[3],yp[3]);
+line(xp[3],yp[3],xp[0],yp[0]);
+line(xp[4],yp[4],xp[5],yp[5]);
+line(xp[5],yp[5],xp[6],yp[6]);
+line(xp[6],yp[6],xp[7],yp[7]);
+line(xp[7],yp[7],xp[4],yp[4]);
+line(xp[0],yp[0],xp[4],yp[4]);
+line(xp[1],yp[1],xp[5],yp[5]);
+line(xp[2],yp[2],xp[6],yp[6]);
+line(xp[3],yp[3],xp[7],yp[7]);
+outtextxy(50,50,"3D Cube - VR Modeling");
 getch();
+closegraph();
 return 0;
 }

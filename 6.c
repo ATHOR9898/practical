@@ -1,119 +1,39 @@
-// 6)Study and simulate the concept of Dining-philosophers problem.
-
-#include<stdio.h>
-#include<conio.h>
-#include<stdlib.h>
-
-int tph, philname[20], status[20], howhung, hu[20], cho;
-
-void one();
-void two();
-
-void main()
-{
-int i;
-
-clrscr();
-
-printf("\n\nDINING PHILOSOPHER PROBLEM");
-printf("\nEnter the total no. of philosophers: ");
-scanf("%d",&tph);
-
-for(i=0;i<tph;i++)
-{
-philname[i]=(i+1);
-status[i]=1;
-}
-
-printf("\nHow many are hungry : ");
-scanf("%d", &howhung);
-
-if(howhung==tph)
-{
-printf("\n All are hungry..\nDead lock stage will occur");
-printf("\nExiting\n");
+#include <graphics.h>
+#include <stdio.h>
+#include <conio.h>
+#include <math.h>
+int main(){
+int gd=DETECT,gm;
+int x1=100,y1=100;
+int x2=150,y2=50;
+int x3=200,y3=100;
+int tx=100,ty=50;
+float sx=1.5,sy=1.5;
+float angle=45;
+float rad;
+initgraph(&gd,&gm,"C:\\TURBOC3\\BGI");
+setcolor(WHITE);
+line(x1,y1,x2,y2);
+line(x2,y2,x3,y3);
+line(x3,y3,x1,y1);
+outtextxy(100,110,"Original Object");
+setcolor(YELLOW);
+line(x1+tx,y1+ty,x2+tx,y2+ty);
+line(x2+tx,y2+ty,x3+tx,y3+ty);
+line(x3+tx,y3+ty,x1+tx,y1+ty);
+outtextxy(x1+tx,y1+ty+10,"Translated Object");
+setcolor(GREEN);
+line(x1*sx,y1*sy,x2*sx,y2*sy);
+line(x2*sx,y2*sy,x3*sx,y3*sy);
+line(x3*sx,y3*sy,x1*sx,y1*sy);
+outtextxy(x1*sx,y1*sy+10,"Scaled Object");
+rad=angle*(3.14/180);
+setcolor(RED);
+line(x1*cos(rad)-y1*sin(rad),x1*sin(rad)+y1*cos(rad),x2*cos(rad)-y2*sin(rad),x2*sin(rad)+y2*cos(rad));
+line(x2*cos(rad)-y2*sin(rad),x2*sin(rad)+y2*cos(rad),x3*cos(rad)-y3*sin(rad),x3*sin(rad)+y3*cos(rad));
+line(x3*cos(rad)-y3*sin(rad),x3*sin(rad)+y3*cos(rad),x1*cos(rad)-y1*sin(rad),x1*sin(rad)+y1*cos(rad));
+outtextxy(200,50,"Rotated Object");
 getch();
-exit(0);
+closegraph();
+return 0;
 }
-else
-{
-for(i=0;i<howhung;i++)
-{
-printf("Enter philosopher %d position:",(i+1));
-scanf("%d",&hu[i]);
-status[hu[i]]=2;
-}
-
-do
-{
-printf("\n1.One can eat at a time\t2.Two can eat at a time\t3.Exit\nEnter your choice:");
-scanf("%d", &cho);
-
-switch(cho)
-{
-case 1: one();
-break;
-
-case 2: two();
-break;
-
-case 3: exit(0);
-
-default: printf("\nInvalid option..");
-}
-}while(1);
-}
-}
-
-void one()
-{
-int pos=0, x, i;
-
-printf("\nAllow one philosopher to eat at any time\n");
-
-for(i=0;i<howhung;i++,pos++)
-{
-printf("\nP %d is granted to eat", philname[hu[pos]]);
-
-for(x=pos+1;x<howhung;x++)
-printf("\nP %d is waiting", philname[hu[x]]);
-}
-}
-
-void two()
-{
-int i, j, s=0, t, r, x;
-
-printf("\nAllow two philosophers to eat at same time\n");
-
-for(i=0;i<howhung;i++)
-{
-for(j=i+1;j<howhung;j++)
-{
-if(abs(hu[i]-hu[j])>=1 && abs(hu[i]-hu[j])!=4)
-{
-printf("\n\nCombination %d \n", (s+1));
-
-t=hu[i];
-r=hu[j];
-s++;
-
-printf("\nP %d and P %d are granted to eat", philname[hu[i]], philname[hu[j]]);
-
-for(x=0;x<howhung;x++)
-{
-if((hu[x]!=t)&&(hu[x]!=r))
-printf("\nP %d is waiting", philname[hu[x]]);
-}
-}
-}
-}
-}
-
-// input
-// DINING PHILOSOPHER PROBLEM
-// Enter the total no. of philosophers: 5
-// How many are hungry : 3
-// Enter philosopher 1 position: 2
-// Enter philosopher 2 position: 4
-// Enter philosopher 3 position: 5

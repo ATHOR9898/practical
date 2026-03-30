@@ -1,84 +1,27 @@
-// 2) To write a program to implement cpu scheduling algorithm for shortest job first scheduling.
-
-#include<stdio.h>
-#include<conio.h>
-
-struct process
-{
-int pid;
-int bt;
-int wt;
-int tt;
-} p[10], temp;
-
-void main()
-{
-int i,j,n,totwt,tottt;
-float avg1,avg2;
-
-clrscr();
-
-printf("\nEnter the number of process:\t");
-scanf("%d",&n);
-
-for(i=1;i<=n;i++)
-{
-p[i].pid=i;
-printf("\nEnter the burst time:\t");
-scanf("%d",&p[i].bt);
+#include <graphics.h>
+#include <conio.h>
+void main(){
+int gd=DETECT,gm;
+int x1=200,y1=50;
+int x2=500,y2=300;
+int dx,dy,p,x,y;
+initgraph(&gd,&gm,"C:\\TURBOC3\\BGI");
+dx=x2-x1;
+dy=y2-y1;
+p=2*dy-dx;
+x=x1;
+y=y1;
+putpixel(x,y,WHITE);
+while(x<x2){
+x=x+1;
+if(p<0){
+p=p+2*dy;
+}else{
+y=y+1;
+p=p+2*dy-2*dx;
 }
-
-for(i=1;i<n;i++)
-{
-for(j=i+1;j<=n;j++)
-{
-if(p[i].bt>p[j].bt)
-{
-temp.pid=p[i].pid;
-p[i].pid=p[j].pid;
-p[j].pid=temp.pid;
-
-temp.bt=p[i].bt;
-p[i].bt=p[j].bt;
-p[j].bt=temp.bt;
+putpixel(x,y,WHITE);
 }
-}
-}
-
-p[1].wt=0;
-p[1].tt=p[1].bt+p[1].wt;
-
-i=2;
-
-while(i<=n)
-{
-p[i].wt=p[i-1].bt+p[i-1].wt;
-p[i].tt=p[i].bt+p[i].wt;
-i++;
-}
-
-i=1;
-totwt=0;
-tottt=0;
-
-printf("\nProcess id \tbt \twt \ttt");
-
-while(i<=n)
-{
-printf("\n\t%d \t%d \t%d \t%d",p[i].pid,p[i].bt,p[i].wt,p[i].tt);
-totwt=p[i].wt+totwt;
-tottt=p[i].tt+tottt;
-i++;
-}
-
-avg1=(float)totwt/n;
-avg2=(float)tottt/n;
-
-printf("\nAVG1=%f\t AVG2=%f",avg1,avg2);
-
 getch();
+closegraph();
 }
-
-// 4
-// 2
-// 6

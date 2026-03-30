@@ -1,103 +1,76 @@
-// 8)To study and implement page replacement algorithms for memory
-// management :  Least recently used (LRU).
-
-#include<stdio.h>
-#include<conio.h>
-
-int main()
-{
-int frames[10], temp[10], pages[10];
-int total_pages, m, n, position, k, l, total_frames;
-int a = 0, b = 0, page_fault = 0;
-
-clrscr();
-
-printf("\nEnter Total Number of Frames:\t");
-scanf("%d", &total_frames);
-
-for(m = 0; m < total_frames; m++)
-{
-frames[m] = -1;
+#include <graphics.h>
+#include <stdio.h>
+#define MAX 20
+int xmin=100,ymin=100,xmax=300,ymax=300;
+typedef struct{int x,y;}Point;
+int inside(Point p,int edge){
+if(edge==0)return p.x>=xmin;
+if(edge==1)return p.x<=xmax;
+if(edge==2)return p.y>=ymin;
+if(edge==3)return p.y<=ymax;
+return 0;
 }
-
-printf("Enter Total Number of Pages:\t");
-scanf("%d", &total_pages);
-
-printf("Enter Values for Reference String:\n");
-for(m = 0; m < total_pages; m++)
-{
-printf("Value No.[%d]:\t", m + 1);
-scanf("%d", &pages[m]);
+Point intersect(Point p1,Point p2,int edge){
+Point p;
+float m=0;
+if(p2.x!=p1.x)m=(float)(p2.y-p1.y)/(p2.x-p1.x);
+if(edge==0){
+p.x=xmin;
+p.y=p1.y+m*(xmin-p1.x);
 }
-
-for(n = 0; n < total_pages; n++)
-{
-a = 0;
-b = 0;
-
-for(m = 0; m < total_frames; m++)
-{
-if(frames[m] == pages[n])
-{
-a = 1;
-b = 1;
-break;
+else if(edge==1){
+p.x=xmax;
+p.y=p1.y+m*(xmax-p1.x);
 }
+else if(edge==2){
+p.y=ymin;
+if(p2.x!=p1.x)p.x=p1.x+(ymin-p1.y)/m;
 }
-
-if(a == 0)
-{
-for(m = 0; m < total_frames; m++)
-{
-if(frames[m] == -1)
-{
-frames[m] = pages[n];
-b = 1;
-break;
+else if(edge==3){
+p.y=ymax;
+if(p2.x!=p1.x)p.x=p1.x+(ymax-p1.y)/m;
 }
+return p;
 }
-page_fault++;
+int clipPolygon(Point in[],int n,int edge,Point out[]){
+Point curr,prev;
+int i,count=0;
+prev=in[n-1];
+for(i=0;i<n;i++){
+curr=in[i];
+if(inside(curr,edge)){
+if(!inside(prev,edge))out[count++]=intersect(prev,curr,edge);
+out[count++]=curr;
 }
-
-if(b == 0)
-{
-for(m = 0; m < total_frames; m++)
-{
-temp[m] = 0;
+else if(inside(prev,edge)){
+out[count++]=intersect(prev,curr,edge);
 }
-
-for(k = n - 1, l = 1; l <= total_frames - 1 && k >= 0; l++, k--)
-{
-for(m = 0; m < total_frames; m++)
-{
-if(frames[m] == pages[k])
-{
-temp[m] = 1;
+prev=curr;
 }
+return count;
 }
-}
-
-for(m = 0; m < total_frames; m++)
-{
-if(temp[m] == 0)
-{
-position = m;
-break;
-}
-}
-frames[position] = pages[n];
-page_fault++;
-}
-
-printf("\n");
-for(m = 0; m < total_frames; m++)
-{
-printf("%d\t", frames[m]);
-}
-}
-
-printf("\nTotal Number of Page Faults:\t%d\n", page_fault);
-
+int main(){
+int gd=DETECT,gm;
+Point poly[MAX],out1[MAX],out2[MAX];
+int n=4;
+int i;
+poly[0].x=50;poly[0].y=150;
+poly[1].x=200;poly[1].y=50;
+poly[2].x=350;poly[2].y=150;
+poly[3].x=200;poly[3].y=350;
+initgraph(&gd,&gm,"C:\\TURBOC3\\BGI");
+rectangle(xmin,ymin,xmax,ymax);
+setcolor(WHITE);
+for(i=0;i<n;i++)
+line(poly[i].x,poly[i].y,poly[(i+1)%n].x,poly[(i+1)%n].y);
+n=clipPolygon(poly,n,0,out1);
+n=clipPolygon(out1,n,1,out2);
+n=clipPolygon(out2,n,2,out1);
+n=clipPolygon(out1,n,3,out2);
+setcolor(RED);
+for(i=0;i<n;i++)
+line(out2[i].x,out2[i].y,out2[(i+1)%n].x,out2[(i+1)%n].y);
 getch();
+closegraph();
 return 0;
 }

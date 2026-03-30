@@ -1,67 +1,34 @@
 // 1) Write the program to implement CPU & scheduling algorithm for first come first serve scheduling.
 
-#include<stdio.h>
-#include<conio.h>
-
-struct process
-{
-int pid;
-int bt;
-int wt,tt;
-} p[10];
-
-void main()
-{
-int i,n,totwt,tottt,avg1,avg2;
-
-clrscr();
-
-printf("enter the no of process \n");
-scanf("%d",&n);
-
-for(i=1;i<=n;i++)
-{
-p[i].pid=i;
-printf("enter the burst time \n");
-scanf("%d",&p[i].bt);
+#include <graphics.h>
+#include <conio.h>
+#include <stdio.h>
+#include <math.h>
+void main(){
+int gd=DETECT,gm;
+float x1,y1,x2,y2;
+float dx,dy,xinc,yinc,x,y;
+int steps,i;
+initgraph(&gd,&gm,"C:\\TURBOC3\\BGI");
+printf("Enter starting point (x1 y1): ");
+scanf("%f%f",&x1,&y1);
+printf("Enter ending point (x2 y2): ");
+scanf("%f%f",&x2,&y2);
+dx=x2-x1;
+dy=y2-y1;
+if(fabs(dx)>fabs(dy))
+steps=fabs(dx);
+else
+steps=fabs(dy);
+xinc=dx/steps;
+yinc=dy/steps;
+x=x1;
+y=y1;
+for(i=0;i<=steps;i++){
+putpixel((int)(x+0.5),(int)(y+0.5),WHITE);
+x=x+xinc;
+y=y+yinc;
 }
-
-p[1].wt=0;
-p[1].tt=p[1].bt+p[1].wt;
-
-i=2;
-
-while(i<=n)
-{
-p[i].wt=p[i-1].bt+p[i-1].wt;
-p[i].tt=p[i].bt+p[i].wt;
-i++;
-}
-
-i=1;
-totwt=0;
-tottt=0;
-
-printf("\n processid \t bt\t wt\t tt\n");
-
-while(i<=n)
-{
-printf("\n\t%d \t%d \t%d \t%d",p[i].pid,p[i].bt,p[i].wt,p[i].tt);
-totwt=p[i].wt+totwt;
-tottt=p[i].tt+tottt;
-i++;
-}
-
-avg1=totwt/n;
-avg2=tottt/n;
-
-printf("\navg1=%d \t avg2=%d\t",avg1,avg2);
-
 getch();
+closegraph();
 }
-
-// 3
-
-// 5
-// 6
-// 7
