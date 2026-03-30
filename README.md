@@ -11,7 +11,8 @@
 
 3. To implement Midpoint Circle Drawing Algorithm. ([3.c](https://github.com/ATHOR9898/practical/blob/main/3.c))
 
-4. To implement Area Filling Algorithm: Boundary Fill, Flood Fill. ([4.c](https://github.com/ATHOR9898/practical/blob/main/4.c))
+4. To implement Area Filling Algorithm: Boundary Fill, Flood Fill. ([4.1.c](https://github.com/ATHOR9898/practical/blob/main/4.1.c))
+4. To implement Area Filling Algorithm: Boundary Fill, Flood Fill. ([4.2.c](https://github.com/ATHOR9898/practical/blob/main/4.2.c))
 
 5. To implement Scan Line Polygon Filling Algorithm. ([5.c](https://github.com/ATHOR9898/practical/blob/main/5.c))
 
