@@ -9,7 +9,7 @@
 
 ([4.txt](/04.txt)) Study and execute the basic networking commands in Windows/Linux.
 
-([5.txt](05.txt)) Setup a network and configure IP addressing, subnetting, Masking. (e.g. CISCO Packet Tracer)
+([5.txt](https://mega.nz/file/KPRxzbLZ#bzNIYCqKiNY9HCX-xmdveo-TyQBBjLFrF1gaMNua2YI)) Setup a network and configure IP addressing, subnetting, Masking. (e.g. CISCO Packet Tracer)
 
 ([6.txt](https://mega.nz/file/ebJzlB6D#pMo81EI6jcCG99Gx19JiNTzKRjWGfCT3urA9UFuT9os)) Understand the operation of packet sniffer tools like Wireshark.
 
