@@ -15,7 +15,7 @@
 
 
 
-([8.txt]()) Socket programming using TCP or UDP.
+([8.txt](/8.c)) Socket programming using TCP or UDP.
 
 ([9.txt]()) Perform File transfer and access using FTP.
 
