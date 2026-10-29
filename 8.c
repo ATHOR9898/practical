@@ -1,76 +1,37 @@
-#include <graphics.h>
-#include <stdio.h>
-#define MAX 20
-int xmin=100,ymin=100,xmax=300,ymax=300;
-typedef struct{int x,y;}Point;
-int inside(Point p,int edge){
-if(edge==0)return p.x>=xmin;
-if(edge==1)return p.x<=xmax;
-if(edge==2)return p.y>=ymin;
-if(edge==3)return p.y<=ymax;
-return 0;
-}
-Point intersect(Point p1,Point p2,int edge){
-Point p;
-float m=0;
-if(p2.x!=p1.x)m=(float)(p2.y-p1.y)/(p2.x-p1.x);
-if(edge==0){
-p.x=xmin;
-p.y=p1.y+m*(xmin-p1.x);
-}
-else if(edge==1){
-p.x=xmax;
-p.y=p1.y+m*(xmax-p1.x);
-}
-else if(edge==2){
-p.y=ymin;
-if(p2.x!=p1.x)p.x=p1.x+(ymin-p1.y)/m;
-}
-else if(edge==3){
-p.y=ymax;
-if(p2.x!=p1.x)p.x=p1.x+(ymax-p1.y)/m;
-}
-return p;
-}
-int clipPolygon(Point in[],int n,int edge,Point out[]){
-Point curr,prev;
-int i,count=0;
-prev=in[n-1];
-for(i=0;i<n;i++){
-curr=in[i];
-if(inside(curr,edge)){
-if(!inside(prev,edge))out[count++]=intersect(prev,curr,edge);
-out[count++]=curr;
-}
-else if(inside(prev,edge)){
-out[count++]=intersect(prev,curr,edge);
-}
-prev=curr;
-}
-return count;
-}
-int main(){
-int gd=DETECT,gm;
-Point poly[MAX],out1[MAX],out2[MAX];
-int n=4;
-int i;
-poly[0].x=50;poly[0].y=150;
-poly[1].x=200;poly[1].y=50;
-poly[2].x=350;poly[2].y=150;
-poly[3].x=200;poly[3].y=350;
-initgraph(&gd,&gm,"C:\\TURBOC3\\BGI");
-rectangle(xmin,ymin,xmax,ymax);
-setcolor(WHITE);
-for(i=0;i<n;i++)
-line(poly[i].x,poly[i].y,poly[(i+1)%n].x,poly[(i+1)%n].y);
-n=clipPolygon(poly,n,0,out1);
-n=clipPolygon(out1,n,1,out2);
-n=clipPolygon(out2,n,2,out1);
-n=clipPolygon(out1,n,3,out2);
-setcolor(RED);
-for(i=0;i<n;i++)
-line(out2[i].x,out2[i].y,out2[(i+1)%n].x,out2[(i+1)%n].y);
-getch();
-closegraph();
-return 0;
-}
+Aim: Socket programming using TCP & UDP.
+
+Theory
+
+What is TCP?
+TCP stands for Transmission Control Protocol.
+It is used when communication between two computers should be secure and reliable.
+It is one of the most widely used protocols over the TCP/IP network.
+  
+What is UDP?
+UDP stands for User Datagram Protocol.
+Its working is similar to TCP.
+It is often used for sending and receiving messages.
+The main difference is that UDP is connectionless in nature.
+UDP is faster than TCP, but it does not provide assurance of packet delivery.
+  
+Socket Programming
+Sockets allow communication between two different processes on the same or different machines.
+Sockets enable applications to communicate using standard mechanisms built into network hardware and operating systems.
+A socket represents a single connection between exactly two pieces of software.
+Libraries implementing sockets use IP as the Internet Protocol and TCP for streams.
+
+Primitives Used in Sockets
+
+SOCKET – creates a new communication endpoint.
+BIND – attach a local address to a socket.
+LISTEN – allow the socket to accept connections.
+ACCEPT – block the caller until a connection arrives.
+CONNECT – actively attempt to establish a connection.
+SEND – send some data over a connection.
+RECEIVE – receive data from a connection.
+CLOSE – release the connection.
+
+
+Conclusion
+Socket programming enables communication between two processes using TCP or UDP protocols.
+TCP provides reliable communication, while UDP provides faster, connectionless data transfer.
