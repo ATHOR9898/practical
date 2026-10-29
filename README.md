@@ -17,9 +17,9 @@
 
 ([8.txt](/08.txt)) Socket programming using TCP or UDP.
 
-([9.txt](https://mega.nz/file/WKYRCBRS#iFMZGYGbe554fy1TUCCaVwJZY1ODKfQdl5uiTow67DY)) Perform File transfer and access using FTP.
+([9.txt](https://mega.nz/file/6OhRmZ7D#ft0FAm-LLreZwHdtxhPSafdldZL-nPi0_zfeywhB0HU)) Perform File transfer and access using FTP.
 
-([10.txt](https://mega.nz/file/WKYRCBRS#iFMZGYGbe554fy1TUCCaVwJZY1ODKfQdl5uiTow67DY)) Perform remote login using Telnet server.
+([10.txt](https://mega.nz/file/6OhRmZ7D#ft0FAm-LLreZwHdtxhPSafdldZL-nPi0_zfeywhB0HU)) Perform remote login using Telnet server.
 
 
 ---
