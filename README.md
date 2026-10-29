@@ -1,29 +1,27 @@
-# CGVR
+# CN
 ---
 
 ## List of Experiments
 
-*Experiments For CGVR Practical*
+([1.txt]()) Study of RJ45 and CAT6 cabling and connection using crimping tool.
 
-1. To implement DDA Line Drawing Algorithm. ([1.c](https://github.com/ATHOR9898/practical/blob/main/1.c))
+([2.txt]()) Understand the functioning of ALOHA and CSMA/CD using NS2.
 
-2. To implement Bresenham’s Line Drawing Algorithm. ([2.c](https://github.com/ATHOR9898/practical/blob/main/2.c))
+([3.txt]()) Study of following Network Devices: HUB, Repeater, Switch, Router, NIC, Modem, Gateway, Bridge.
 
-3. To implement Midpoint Circle Drawing Algorithm. ([3.c](https://github.com/ATHOR9898/practical/blob/main/3.c))
+([4.txt]()) Study and execute the basic networking commands in Windows/Linux.
 
-4. To implement Area Filling Algorithm: Boundary Fill, Flood Fill. ([4.1.c](https://github.com/ATHOR9898/practical/blob/main/4.1.c))
-   To implement Area Filling Algorithm: Boundary Fill, Flood Fill. ([4.2.c](https://github.com/ATHOR9898/practical/blob/main/4.2.c))
+([5.txt]()) Setup a network and configure IP addressing, subnetting, Masking. (e.g. CISCO Packet Tracer)
 
-5. To implement Scan Line Polygon Filling Algorithm. ([5.c](https://github.com/ATHOR9898/practical/blob/main/5.c))
+([6.txt]()) Understand the operation of packet sniffer tools like Wireshark.
 
-6. To implement 2D Transformations: Translation, Scaling, Rotation. ([6.c](https://github.com/ATHOR9898/practical/blob/main/6.c))
+([7.txt]()) Study and install the Network Simulator (NS3).
 
-7. To implement Line Clipping Algorithm: Cohen Sutherland. ([7.c](https://github.com/ATHOR9898/practical/blob/main/7.c))
+([8.txt]()) Socket programming using TCP or UDP.
 
-8. To implement Polygon Clipping Algorithm: Sutherland Hodgeman. ([8.c](https://github.com/ATHOR9898/practical/blob/main/8.c))
+([9.txt]()) Perform File transfer and access using FTP.
 
-9. To implement 3D modeling for VR. ([9.c](https://github.com/ATHOR9898/practical/blob/main/9.c))
+([10.txt]()) Perform remote login using Telnet server.
 
-10. To create Interactive Application (games). ([10.c](https://github.com/ATHOR9898/practical/blob/main/10.c))
 
 ---
