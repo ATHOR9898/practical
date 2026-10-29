@@ -3,9 +3,7 @@
 
 ## List of Experiments
 
-([1.txt]()) Study of RJ45 and CAT6 cabling and connection using crimping tool.
 
-([2.txt]()) Understand the functioning of ALOHA and CSMA/CD using NS2.
 
 ([3.txt]()) Study of following Network Devices: HUB, Repeater, Switch, Router, NIC, Modem, Gateway, Bridge.
 
@@ -15,7 +13,7 @@
 
 ([6.txt]()) Understand the operation of packet sniffer tools like Wireshark.
 
-([7.txt]()) Study and install the Network Simulator (NS3).
+
 
 ([8.txt]()) Socket programming using TCP or UDP.
 
