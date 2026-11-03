@@ -1,25 +1,30 @@
-# CN
+# DWM
 ---
 
 ## List of Experiments
 
 
 
-([3.txt](https://mega.nz/file/3b5wSDpI#BwIeYJeu2vHR2Xwxtvz1h7x6Z_BUgxcjLJ0hrtZAe-0)) Study of following Network Devices: HUB, Repeater, Switch, Router, NIC, Modem, Gateway, Bridge.
+Experiment 1: One case study on building Data warehouse/Data Mart
+• Write Detailed Problem statement and design dimensional modelling (creation of star and snowflake schema)
 
-([4.txt](/04.txt)) Study and execute the basic networking commands in Windows/Linux.
+Experiment 2: Implementation of all dimension table and fact table based on experiment 1 case study
 
-([5.txt](https://mega.nz/file/KPRxzbLZ#bzNIYCqKiNY9HCX-xmdveo-TyQBBjLFrF1gaMNua2YI)) Setup a network and configure IP addressing, subnetting, Masking. (e.g. CISCO Packet Tracer)
+Experiment 3: Implementation of OLAP operations: Slice, Dice, Rollup, Drilldown and Pivot based on experiment 1 case study
 
-([6.txt](https://mega.nz/file/ebJzlB6D#pMo81EI6jcCG99Gx19JiNTzKRjWGfCT3urA9UFuT9os)) Understand the operation of packet sniffer tools like Wireshark.
+Experiment 4: Implementation of Bayesian algorithm
 
+Experiment 5: Implementation of Data Discretization (any one) & Visualization (any one)
 
+Experiment 6: Perform data Pre-processing task and demonstrate Classification, Clustering, Association algorithm on data sets using data mining tool (WEKA/R tool)
 
-([8.txt](/08.txt)) Socket programming using TCP or UDP.
+Experiment 7: Implementation of Clustering algorithm (K-means/K-medoids)
 
-([9.txt](https://mega.nz/file/6OhRmZ7D#ft0FAm-LLreZwHdtxhPSafdldZL-nPi0_zfeywhB0HU)) Perform File transfer and access using FTP.
+Experiment 8: Implementation of any one Hierarchical Clustering method
 
-([10.txt](https://mega.nz/file/6OhRmZ7D#ft0FAm-LLreZwHdtxhPSafdldZL-nPi0_zfeywhB0HU)) Perform remote login using Telnet server.
+Experiment 9: Implementation of Association Rule Mining algorithm (Apriori)
+
+Experiment 10: Implementation of Page rank/HITS algorithm
 
 
 ---
