@@ -3,6 +3,8 @@
 
 ## List of Experiments
 
+[exp](https://github.com/ATHOR9898/practical/tree/main)
+
 
 
 Experiment 1: One case study on building Data warehouse/Data Mart
